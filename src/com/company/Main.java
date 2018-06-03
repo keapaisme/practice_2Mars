@@ -1,19 +1,23 @@
 package com.company;
+import java.io.File;
+import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)throws Exception {
 	// write your code here
        Simulation ph1 = new Simulation();
        ph1.runSimulation();
+       ph1.loadItems("phase-1.txt");
     }
 }
 
 class Item{
+
     int weight;
     String name;
-
-    public Item(){
+//構造函數
+    public Item(int weight,String name){
         this.name=name;
         this.weight=weight;
     }
@@ -54,10 +58,23 @@ class Rocket implements SpaceShip{
 }
 
 class Simulation {
-    public void loadItems(Item item){
-        item.setName("food");
-        item.setWeight(5000);
+    String missCode;// mission code : ph1,ph2
+    public ArrayList load=null;
+    //構造函數
+    public Simulation(){
+        load = new ArrayList();
     }
+    //讀取運送物品清單,並返回Item ArrayList:
+    public void loadItems(String missCode)throws Exception{
+
+            File file = new File(missCode);
+            Scanner scan = new Scanner(file);
+            System.out.println(scan);
+
+
+    }
+
+
 
     public void loadU1(){}
     public void loadU2(){}
