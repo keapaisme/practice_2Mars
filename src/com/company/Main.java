@@ -69,9 +69,16 @@ class Simulation {
 
             File file = new File(missCode);
             Scanner scan = new Scanner(file);
-            System.out.println(scan);
-
-
+            int i = 0;String txt;
+            while (scan.hasNextLine()){
+                txt=scan.nextLine();
+                System.out.println(txt);
+                //name=txt.split("=");
+                //weight=txt.nextLine();
+                //load.add(i,txt);
+                i++;
+            }
+            //System.out.println(load.get(8));
     }
 
 
