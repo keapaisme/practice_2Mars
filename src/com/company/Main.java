@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args)throws Exception {
 	// write your code here
-       //Simulation ph1 = new Simulation();
+       //
        //ph1.loadItems("phase-1.txt");
        Simulation ph2 = new Simulation();
        ph2.loadItems("phase-2.txt");
@@ -53,8 +53,8 @@ class Item{
 interface SpaceShip {
     boolean launch=true;
     boolean land=true;
-    boolean canCarry(int Item);
-    boolean carry(String Item);
+    boolean canCarry(int weight);
+    boolean carry(String name);
 }
 
 
@@ -63,8 +63,8 @@ interface SpaceShip {
 //Rocket:
 class Rocket implements SpaceShip {
     //filed
-    int uniCost;//火箭成本
-    int uniWeight;//火箭重量
+    int rocketCost;//火箭成本
+    int rocketWeight;//火箭重量
     int maxLoadage;//能携带的最高货物重量（包括自重）
     int cargoesWeight;//貨物載重量
     int expRate;//任務爆炸概率
@@ -74,7 +74,7 @@ class Rocket implements SpaceShip {
     boolean launce() {return true;}
 
     @Override
-    public boolean canCarry(int Item) {
+    public boolean canCarry(int Item ) {
         // 如果 cargoesWeight > maxLoadage - uniWeight >> return false:
 
 
@@ -120,14 +120,18 @@ class Simulation{
 
     //創建U1火箭:
     public ArrayList loadU1(){
-    System.out.println(phArray.size());
-    //Item temp = (Item) phArray.get(8);
-    Rocket u1 = new Rocket();
-    System.out.println(u1.canCarry(5000));
+
+     //執行任務(返回任務總成本totalCost)
+        //任務裝載
+        //任務清單
+        //任務火箭數
 
 
         return rockArray;
     }
+
+
+
     //創建U2火箭:
     public ArrayList loadU2(Simulation phArray ) {
 
@@ -136,8 +140,9 @@ class Simulation{
     }
 
     //simulation:
-    void runSimulation(Simulation rockArray){
-
+    void runSimulation(){//傳入U1ArrayList,U2ArrayList
+//for u1.launch{
+        //加總成本,
     }
 }
 
