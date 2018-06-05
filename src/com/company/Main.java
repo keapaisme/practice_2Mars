@@ -1,24 +1,32 @@
 package com.company;
 import java.io.File;
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class Main {
 
     public static void main(String[] args)throws Exception {
 	// write your code here
-       Simulation ph1 = new Simulation();
-       ph1.runSimulation();
-       ph1.loadItems("phase-1.txt");
+       //Simulation ph1 = new Simulation();
+       //ph1.loadItems("phase-1.txt");
+       Simulation ph2 = new Simulation();
+       ph2.loadItems("phase-2.txt");
+       ph2.loadU1();
 
     }
 }
 
-class Item{
 
-    int weight ;
-    String name;
+
+
+
+//Item類含火箭要携帶的物品及其重量
+class Item{
+    private int weight ;
+    private String name;
+
 //構造函數
-    public Item(int weight,String name){
+    public Item(String name, int weight){
         this.name=name;
         this.weight=weight;
     }
@@ -39,64 +47,111 @@ class Item{
     }
 }
 
+
+
+//SpaceShip
 interface SpaceShip {
     boolean launch=true;
     boolean land=true;
-    boolean canCarry(int weight);
-    boolean carry(String name);
+    boolean canCarry(int Item);
+    boolean carry(String Item);
 }
 
-class Rocket implements SpaceShip{
-    @Override
-    public boolean canCarry(int weight) {
-        return false;
-    }
+
+
+
+//Rocket:
+class Rocket implements SpaceShip {
+    //filed
+    int uniCost;//火箭成本
+    int uniWeight;//火箭重量
+    int maxLoadage;//能携带的最高货物重量（包括自重）
+    int cargoesWeight;//貨物載重量
+    int expRate;//任務爆炸概率
+    //int missonExpRate = expRate * (cargoesWeight/maxLoadage);// 執行發射及著陸爆炸概率
+
+    boolean land () {return true;}
+    boolean launce() {return true;}
 
     @Override
-    public boolean carry(String name) {
+    public boolean canCarry(int Item) {
+        // 如果 cargoesWeight > maxLoadage - uniWeight >> return false:
+
+
+        return true;
+    }
+    @Override
+    public boolean carry(String Item) {
         return false;
     }
 }
 
-class Simulation {
-    String missCode;// mission code : ph1,ph2
-    public ArrayList load=null;
+
+
+
+//負責讀取物品數據並裝載火箭。
+class Simulation{
+    //String missCode;// mission code : ph1,ph2
+        ArrayList phArray = new ArrayList();
+        ArrayList rockArray = new ArrayList();
+
     //構造函數
     public Simulation(){
-        load = new ArrayList();
+
     }
-    //讀取運送物品清單,並返回Item ArrayList:
-    public void loadItems(String missCode)throws Exception{
-            //
+
+    //loadItems:讀取運送物品清單,並返回Item ArrayList
+    public ArrayList loadItems(String missCode)throws Exception{
+            //ArrayList phArray = new ArrayList();
             File file = new File(missCode);
             Scanner scan = new Scanner(file);
             int i = 0;
-            Item phList = new Item(0,"");
-            ArrayList phArray = new ArrayList();
-
         while (scan.hasNextLine()){
-                String txt=scan.nextLine();
-                //將物品名，重量存入 phArray
-                String [] itemName = txt.split("=");
-                phList.setName(itemName[0]);
-                phList.setWeight(Integer.parseInt(itemName[1]));
-                phArray.add(txt);
-
-                System.out.println("name= "+phList.getName()+" weight= "+phList.getWeight());
-                System.out.println("=======");
-                System.out.println(phArray.size());
-                i++;
-            }
-            System.out.println(phArray.get(5));
+            String[] txt = (scan.nextLine()).split("=");
+            Item temp = new Item("", 0);
+            temp.setName(txt[0]);
+            temp.setWeight(Integer.parseInt(txt[1]));
+            phArray.add(temp);
+            i++;
+        }
+        return phArray;
     }
 
 
+    //創建U1火箭:
+    public ArrayList loadU1(){
+    System.out.println(phArray.size());
+    //Item temp = (Item) phArray.get(8);
+    Rocket u1 = new Rocket();
+    System.out.println(u1.canCarry(5000));
 
-    public void loadU1(){}
-    public void loadU2(){}
-    public void runSimulation(){}
+
+        return rockArray;
+    }
+    //創建U2火箭:
+    public ArrayList loadU2(Simulation phArray ) {
+
+        ArrayList u2Array = new ArrayList();
+        return u2Array;
+    }
+
+    //simulation:
+    void runSimulation(Simulation rockArray){
+
+    }
 }
 
 class U1 extends Rocket{}
 
 class U2 extends Rocket{}
+
+/*
+    while (scan.hasNextLine())throws Exception{
+        String [] txt = (scan.nextLine()).split("=");
+        Item temp = new Item ("",0);
+        temp.setName(txt[0]);
+        temp.setWeight(Integer.parseInt(txt[1]));
+        phArray.add(temp);
+        i++;
+    }
+*/
