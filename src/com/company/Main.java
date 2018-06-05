@@ -57,7 +57,12 @@ interface SpaceShip {
     boolean carry(String name);
 }
 
-
+class camare {
+    public void useShip(SpaceShip ship){
+        //ship.canCarry();
+        //ship.carry();
+    }
+}
 
 
 //Rocket:
