@@ -9,15 +9,14 @@ public class Main {
 	// write your code here
        //
        //ph1.loadItems("phase-1.txt");
-       Simulation ph2 = new Simulation();
-       ph2.loadItems("phase-2.txt");
-       ph2.loadU1();
+       //Simulation ph2 = new Simulation();
+       //ph2.loadItems("phase-2.txt");
+       //ph2.loadU1();
+       System.out.println(Math.random());//-(17000/18000*0.05));
+       System.out.println(8000.0/18000.0*0.01*10);
 
     }
 }
-
-
-
 
 
 //Item類含火箭要携帶的物品及其重量
@@ -47,81 +46,80 @@ class Item{
     }
 }
 
-
-
 //SpaceShip
 interface SpaceShip {
-    boolean launch=true;
-    boolean land=true;
-    boolean canCarry(int weight);
-    boolean carry(String name);
+    boolean launch();
+    boolean land();
+    boolean canCarry();
+    boolean carry();
 }
-
-class camare {
-    public void useShip(SpaceShip ship){
-        //ship.canCarry();
-        //ship.carry();
-    }
-}
-
 
 //Rocket:
 class Rocket implements SpaceShip {
     //filed
     int rocketCost;//火箭成本
     int rocketWeight;//火箭重量
-    int maxLoadage;//能携带的最高货物重量（包括自重）
+    int maxLoadage;//能携带的最高货物重量（不含自重）
     int cargoesWeight;//貨物載重量
     int expRate;//任務爆炸概率
-    //int missonExpRate = expRate * (cargoesWeight/maxLoadage);// 執行發射及著陸爆炸概率
-
-    boolean land () {return true;}
-    boolean launce() {return true;}
+    int missonExpRate = expRate * (cargoesWeight/maxLoadage);// 執行發射及著陸爆炸概率
+    boolean land = true;
+    boolean launch = true;
 
     @Override
-    public boolean canCarry(int Item ) {
-        // 如果 cargoesWeight > maxLoadage - uniWeight >> return false:
-
-
-        return true;
-    }
-    @Override
-    public boolean carry(String Item) {
+    public boolean launch() {
         return false;
     }
+
+    @Override
+    public boolean land() {
+        return false;
+    }
+
+    @Override
+    public boolean carry() {
+        return true;
+    }
+
+    @Override
+    public boolean canCarry() {
+        // 如果 cargoesWeight > maxLoadage - uniWeight >> return false:
+        return true;
+    }
+
 }
-
-
 
 
 //負責讀取物品數據並裝載火箭。
 class Simulation{
     //String missCode;// mission code : ph1,ph2
-        ArrayList phArray = new ArrayList();
+        ArrayList itemArrayList = new ArrayList();
         ArrayList rockArray = new ArrayList();
 
     //構造函數
     public Simulation(){
-
+        itemArrayList=itemArrayList;
+        rockArray=rockArray;
     }
 
     //loadItems:讀取運送物品清單,並返回Item ArrayList
     public ArrayList loadItems(String missCode)throws Exception{
-            //ArrayList phArray = new ArrayList();
+
             File file = new File(missCode);
             Scanner scan = new Scanner(file);
             int i = 0;
         while (scan.hasNextLine()){
             String[] txt = (scan.nextLine()).split("=");
+            System.out.println(txt[0]+txt[1]);// XXX
             Item temp = new Item("", 0);
             temp.setName(txt[0]);
             temp.setWeight(Integer.parseInt(txt[1]));
-            phArray.add(temp);
+            itemArrayList.add(temp);
+
             i++;
         }
-        return phArray;
+        return itemArrayList;
     }
-
 
     //創建U1火箭:
     public ArrayList loadU1(){
@@ -151,17 +149,50 @@ class Simulation{
     }
 }
 
-class U1 extends Rocket{}
+/*
+(傳出是否爆炸)launch(傳入總貨重)
+    隨機計算是否爆炸
+    將T/F 覆蓋存入 ROCKET
+ */
+class U1 extends Rocket {
+    double u1LaunchExpRate = 0.05;
+    double u1LandExpRate = 0.01;
+
+    boolean launchExp (int totalWeight ){
+        if((0.05 *((float) cargoesWeight/(float) maxLoadage) >= Math.random())){
+            //隨機數字小於 爆炸概率 ＝ true
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //       发射时爆炸的概率 = 5% *（携带的货物重量 / 货物重量上限）
+     //着陆时爆炸的概率 = 1% *（携带的货物重量 / 货物重量上限
+}
 
 class U2 extends Rocket{}
 
-/*
-    while (scan.hasNextLine())throws Exception{
-        String [] txt = (scan.nextLine()).split("=");
-        Item temp = new Item ("",0);
-        temp.setName(txt[0]);
-        temp.setWeight(Integer.parseInt(txt[1]));
-        phArray.add(temp);
-        i++;
-    }
-*/
+/*================================
+ ArrayList <U1> loadU1 (ArrayList <Item> items) {
+        ArrayList <U1> fleetU1 = new ArrayList<>();      // create ArrayList object fleetU1
+
+
+java.lang.ClassCastException >> if( a instanceof b)
+
+
+==Main
+Master kas = new Master();
+Cat tom = new Cat();
+kas.feed(tom);
+
+=Master
+public void feed(Cat c){
+ c.eat();
+ }
+
+=Cat
+public void Eat(){
+ print("貓在吃魚"）；
+ }
+ */

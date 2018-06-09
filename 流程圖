@@ -7,25 +7,28 @@ Main
 1 建立模擬對象
 2 第一階段 & 第二階段 裝載Item: ph1.loadItem + ph2.loadItem
 3 第一階段 & 第二階段 裝載U1 艦隊 :ph1.loadU1 + ph2.loadU1
-4 使用U1 艦隊 RunSimluation 顯示總預算 ph1.runSimulation + ph2.runSimulation
+4 使用U1 艦隊 RunSimulation 顯示總預算 ph1.runSimulation + ph2.runSimulation
 為U2重覆 2+3+4
 
 ====================================
-Rocket + SpacShip
+Rocket + SpaceShip
 
 @launch = true----------------------
 @land = true------------------------
 @canCarry-----------------------
+    一种参数为 Item 的方法，如果火箭能够携带此类物品则返回 true，如果超过重量上限则返回 false
 @carry--------------------------
+    一种参数也是 Item 对象的方法，负责更新火箭的当前重量。
+    計算當前火箭的總重量＝item.getWeight++
 
-        SpacShip
+        SpaceShip
         @launch()
         @land()
         @canCarry() :
         @carry()
 
 
-Rocket==============================
+(Rocket)==============================
 U1 & U2
 (傳出是否爆炸)launch(傳入總貨重)
     隨機計算是否爆炸
@@ -37,13 +40,13 @@ U1 & U2
 ====================================
 Simulation
 
-ph1Arraylist;
-ph2Arraylist
-ph1RocketArrayList;
+ph1ArrayList;
+ph2ArrayList
+ph1 RocketArrayList;
 ph2RocketArrayList;
 
 @loadItems------------------建立ph1,ph2貨運清單
-裝填貨物,建立ItemArryList
+    裝填貨物,建立ItemArrayList
 
 @LoadU1 & LoadU2------------建立ph1,ph2艦隊清單
 (傳出U1發射隊列)load(傳入貨物清單)
