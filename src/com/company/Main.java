@@ -7,13 +7,13 @@ public class Main {
 
     public static void main(String[] args)throws Exception {
 	// write your code here
-       //
+
        //ph1.loadItems("phase-1.txt");
-       //Simulation ph2 = new Simulation();
-       //ph2.loadItems("phase-2.txt");
-       //ph2.loadU1();
-       System.out.println(Math.random());//-(17000/18000*0.05));
-       System.out.println(8000.0/18000.0*0.01*10);
+       Simulation ph2 = new Simulation();
+       ph2.loadItems("phase-2.txt");
+       //ph2.loadU1(I);
+       //System.out.println(Math.random());//-(17000/18000*0.05));
+       //System.out.println(8000.0/18000.0*0.01*10);
 
     }
 }
@@ -59,10 +59,10 @@ class Rocket implements SpaceShip {
     //filed
     int rocketCost;//火箭成本
     int rocketWeight;//火箭重量
-    int maxLoadage;//能携带的最高货物重量（不含自重）
-    int cargoesWeight;//貨物載重量
-    int expRate;//任務爆炸概率
-    int missonExpRate = expRate * (cargoesWeight/maxLoadage);// 執行發射及著陸爆炸概率
+    double maxLoadage;//能携带的最高货物重量（不含自重）
+    double cargoesWeight;//貨物載重量
+    double expRate;//任務爆炸概率
+    double missonExpRate = expRate * (cargoesWeight/maxLoadage);// 執行發射及著陸爆炸概率
     boolean land = true;
     boolean launch = true;
 
@@ -78,6 +78,7 @@ class Rocket implements SpaceShip {
 
     @Override
     public boolean carry() {
+
         return true;
     }
 
@@ -118,12 +119,20 @@ class Simulation{
 
             i++;
         }
+        itemArrayList.get(0);
         return itemArrayList;
     }
 
     //創建U1火箭:
-    public ArrayList loadU1(){
+    public ArrayList loadU1(Item item){
+       ArrayList loadList = new ArrayList();//裝載清單
 
+       for (int i = 0; i<=itemArrayList.size();i++){
+          // Item tmp = new Item(itemArrayList.get(0));
+
+           //u01.canCarry(itemArrayList.get(i));
+
+       }
      //執行任務(返回任務總成本totalCost)
         //任務裝載
         //任務清單
@@ -136,10 +145,10 @@ class Simulation{
 
 
     //創建U2火箭:
-    public ArrayList loadU2(Simulation phArray ) {
+    public ArrayList loadU2() {
 
-        ArrayList u2Array = new ArrayList();
-        return u2Array;
+
+        return itemArrayList;//改
     }
 
     //simulation:
