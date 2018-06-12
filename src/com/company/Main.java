@@ -11,6 +11,7 @@ public class Main {
        //ph1.loadItems("phase-1.txt");
        Simulation ph2 = new Simulation();
        ph2.loadItems("phase-2.txt");
+       ph2.loadU1();
        //ph2.loadU1(I);
        //System.out.println(Math.random());//-(17000/18000*0.05));
        //System.out.println(8000.0/18000.0*0.01*10);
@@ -59,10 +60,10 @@ class Rocket implements SpaceShip {
     //filed
     int rocketCost;//火箭成本
     int rocketWeight;//火箭重量
-    double maxLoadage;//能携带的最高货物重量（不含自重）
+
     double cargoesWeight;//貨物載重量
     double expRate;//任務爆炸概率
-    double missonExpRate = expRate * (cargoesWeight/maxLoadage);// 執行發射及著陸爆炸概率
+
     boolean land = true;
     boolean launch = true;
 
@@ -123,14 +124,37 @@ class Simulation{
         return itemArrayList;
     }
 
-    //創建U1火箭:
-    public ArrayList loadU1(Item item){
+    //創建U1火箭:(傳出U1發射隊列)load(傳入貨物清單)
+    //貨物清單總數
+    //火箭R=0
+    //while(貨物清單isNull){
+    //
+    //    建立U1R~U1R+;
+    //    初始載貨重量=U1重量;
+    //    if若載貨總重<=載重量
+    //        依序從清單裝貨;
+    //        載貨重量=載貨重量+物品重量;
+    //        貨物清單-己裝物
+    // arraylist 應為U1(1,2,3,4,5) :其中可以帶該火箭成本,
+    //功用為,依序按清單入貨,計算該火箭成本
+    public ArrayList loadU1(){
        ArrayList loadList = new ArrayList();//裝載清單
-
+        U1 u1Temp = new U1();
+        System.out.println( "loading...");
        for (int i = 0; i<=itemArrayList.size();i++){
-          // Item tmp = new Item(itemArrayList.get(0));
+           Item itemTmp =(Item)itemArrayList.get(i);
+           u1Temp.cargoesWeight= u1Temp.cargoesWeight + itemTmp.getWeight();
 
-           //u01.canCarry(itemArrayList.get(i));
+           if(u1Temp.cargoesWeight>u1Temp.maxLoadage){
+               System.out.println( "Over loading...next ROCKet");
+           }else{
+
+               System.out.println( itemTmp.getName()+" "+ itemTmp.getWeight() +" "+u1Temp.cargoesWeight);
+               loadList.add(itemTmp);
+           }
+
+           //loadList.add(itemArrayList.indexOf(i));
+
 
        }
      //執行任務(返回任務總成本totalCost)
@@ -164,9 +188,10 @@ class Simulation{
     將T/F 覆蓋存入 ROCKET
  */
 class U1 extends Rocket {
+    int maxLoadage=18000;//能携带的最高货物重量（不含自重）
     double u1LaunchExpRate = 0.05;
     double u1LandExpRate = 0.01;
-
+    double missonExpRate = expRate * (cargoesWeight/maxLoadage);// 執行發射及著陸爆炸概率
     boolean launchExp (int totalWeight ){
         if((0.05 *((float) cargoesWeight/(float) maxLoadage) >= Math.random())){
             //隨機數字小於 爆炸概率 ＝ true
