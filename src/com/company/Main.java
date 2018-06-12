@@ -9,9 +9,9 @@ public class Main {
 	// write your code here
 
        //ph1.loadItems("phase-1.txt");
-       Simulation ph2 = new Simulation();
-       ph2.loadItems("phase-2.txt");
-       ph2.loadU1();
+       Simulation ph1 = new Simulation();
+       ph1.loadItems("phase-1.txt");
+       ph1.loadU1();
        //ph2.loadU1(I);
        //System.out.println(Math.random());//-(17000/18000*0.05));
        //System.out.println(8000.0/18000.0*0.01*10);
@@ -117,7 +117,6 @@ class Simulation{
             temp.setName(txt[0]);
             temp.setWeight(Integer.parseInt(txt[1]));
             itemArrayList.add(temp);
-
             i++;
         }
         itemArrayList.get(0);
@@ -138,24 +137,27 @@ class Simulation{
     // arraylist 應為U1(1,2,3,4,5) :其中可以帶該火箭成本,
     //功用為,依序按清單入貨,計算該火箭成本
     public ArrayList loadU1(){
-       ArrayList loadList = new ArrayList();//裝載清單
+        //
+        ArrayList loadList = new ArrayList();//裝載清單
         U1 u1Temp = new U1();
+        System.out.println();
         System.out.println( "loading...");
-       for (int i = 0; i<=itemArrayList.size();i++){
+        int x = itemArrayList.size();//防止溢位
+        //
+         for (int i = 0; i<=x ; i++){
+           ArrayList loadListTemp = new ArrayList();
            Item itemTmp =(Item)itemArrayList.get(i);
            u1Temp.cargoesWeight= u1Temp.cargoesWeight + itemTmp.getWeight();
+           x = x-1;//如果載重將大於負重則結束該火箭裝載重新裝載下一火箭
 
            if(u1Temp.cargoesWeight>u1Temp.maxLoadage){
+               System.out.println("X="+x);
                System.out.println( "Over loading...next ROCKet");
            }else{
-
                System.out.println( itemTmp.getName()+" "+ itemTmp.getWeight() +" "+u1Temp.cargoesWeight);
-               loadList.add(itemTmp);
+               loadListTemp.add(itemTmp);
            }
-
            //loadList.add(itemArrayList.indexOf(i));
-
-
        }
      //執行任務(返回任務總成本totalCost)
         //任務裝載

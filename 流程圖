@@ -61,6 +61,21 @@ while(貨物清單isNull){
         載貨重量=載貨重量+物品重量;
         貨物清單-己裝物
 
+
+          for (int i = 0; i<=x ; i++){
+           ArrayList loadListTemp = new ArrayList();
+           Item itemTmp =(Item)itemArrayList.get(i);
+           u1Temp.cargoesWeight= u1Temp.cargoesWeight + itemTmp.getWeight();
+           x = x-1;//如果載重將大於負重則結束該火箭裝載重新裝載下一火箭
+
+           if(u1Temp.cargoesWeight>u1Temp.maxLoadage){
+               System.out.println("X="+x);
+               System.out.println( "Over loading...next ROCKet");
+           }else{
+               System.out.println( itemTmp.getName()+" "+ itemTmp.getWeight() +" "+u1Temp.cargoesWeight);
+               loadListTemp.add(itemTmp);
+           }
+
 @runSimulation------------
  (傳出總預算) runSimulation (傳入火箭序列)
     -任務成本=火箭成本
