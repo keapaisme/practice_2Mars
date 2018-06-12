@@ -22,8 +22,8 @@ public class Main {
 
 //Item類含火箭要携帶的物品及其重量
 class Item{
-    private int weight ;
-    private String name;
+    int weight ;
+    String name;
 
 //構造函數
     public Item(String name, int weight){
@@ -51,8 +51,8 @@ class Item{
 interface SpaceShip {
     boolean launch();
     boolean land();
-    boolean canCarry();
-    boolean carry();
+    boolean canCarry(int x,int y);
+    boolean carry(String name);
 }
 
 //Rocket:
@@ -60,8 +60,8 @@ class Rocket implements SpaceShip {
     //filed
     int rocketCost;//火箭成本
     int rocketWeight;//火箭重量
-
-    double cargoesWeight;//貨物載重量
+    int cargoesWeight;//貨物載重量
+    int maxLoadAge ;//火箭總重
     double expRate;//任務爆炸概率
 
     boolean land = true;
@@ -78,15 +78,20 @@ class Rocket implements SpaceShip {
     }
 
     @Override
-    public boolean carry() {
+    public boolean carry(String Name) {
 
         return true;
     }
 
     @Override
-    public boolean canCarry() {
-        // 如果 cargoesWeight > maxLoadage - uniWeight >> return false:
-        return true;
+    public boolean canCarry(int getWeight,int maxLoadAge) {
+        cargoesWeight = cargoesWeight + getWeight;
+
+        if( cargoesWeight < maxLoadAge ){//物品總種 ＜ 火箭最大載重
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
@@ -138,27 +143,69 @@ class Simulation{
     //功用為,依序按清單入貨,計算該火箭成本
     public ArrayList loadU1(){
         //
-        ArrayList loadList = new ArrayList();//裝載清單
-        U1 u1Temp = new U1();
-        System.out.println();
-        System.out.println( "loading...");
-        int x = itemArrayList.size();//防止溢位
-        //
-         for (int i = 0; i<=x ; i++){
-           ArrayList loadListTemp = new ArrayList();
-           Item itemTmp =(Item)itemArrayList.get(i);
-           u1Temp.cargoesWeight= u1Temp.cargoesWeight + itemTmp.getWeight();
-           x = x-1;//如果載重將大於負重則結束該火箭裝載重新裝載下一火箭
 
-           if(u1Temp.cargoesWeight>u1Temp.maxLoadage){
+
+        ArrayList loadList = new ArrayList();//每個火箭裝載的貨品內容
+
+        int x = itemArrayList.size();//待運件數
+        int itemIndex = 0;// 要裝入火箭的物品標號
+        while (itemIndex <= x) {
+
+            U1 u1Temp = new U1();//裝載中的火箭
+            System.out.println();
+            System.out.println("loading...");
+
+
+            //
+            for (itemIndex = 0; itemIndex <= x; itemIndex++) {//裝貨
+                Item itemTmp = (Item) itemArrayList.get(itemIndex);//從運送清單itemArrayList取出要裝的貨物itemTmp
+
+                if (u1Temp.canCarry(itemTmp.getWeight(), u1Temp.maxLoadAge)) {
+                    System.out.println("可以裝" + itemTmp.getName());
+                    loadList.add(itemTmp);
+
+                } else {
+                    System.out.println("裝不下" + itemTmp.getName());
+
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+        while(x>0){//x=清單中未送運的物品數,若還有物品未清繼續
+           ArrayList loadListTemp = new ArrayList();
+
+           Item itemTmp =(Item)itemArrayList.get(itemIndex);//第二次應為 X
+           u1Temp.cargoesWeight= u1Temp.cargoesWeight + itemTmp.getWeight();
+
+           if(u1Temp.cargoesWeight >= u1Temp.maxLoadAge){
                System.out.println("X="+x);
                System.out.println( "Over loading...next ROCKet");
            }else{
                System.out.println( itemTmp.getName()+" "+ itemTmp.getWeight() +" "+u1Temp.cargoesWeight);
                loadListTemp.add(itemTmp);
-           }
-           //loadList.add(itemArrayList.indexOf(i));
-       }
+               x = x-1;//清單中未送運的物品數
+               itemIndex += 1;//清單中從第幾個載起
+                }
+
+         loadList.add(loadListTemp);//for 149
+
+        }//while 148
+        */
+
+
      //執行任務(返回任務總成本totalCost)
         //任務裝載
         //任務清單
@@ -190,12 +237,14 @@ class Simulation{
     將T/F 覆蓋存入 ROCKET
  */
 class U1 extends Rocket {
-    int maxLoadage=18000;//能携带的最高货物重量（不含自重）
+    int cargoesWeight = 8000;//能携带的最高货物重量（不含自重）
+    int rocketWeight = 10000;
+    int maxLoadAge = rocketWeight +cargoesWeight;//火箭總重
     double u1LaunchExpRate = 0.05;
     double u1LandExpRate = 0.01;
-    double missonExpRate = expRate * (cargoesWeight/maxLoadage);// 執行發射及著陸爆炸概率
+//    double missonExpRate = expRate * (cargoesWeight/maxLoadAge);// 執行發射及著陸爆炸概率
     boolean launchExp (int totalWeight ){
-        if((0.05 *((float) cargoesWeight/(float) maxLoadage) >= Math.random())){
+        if((0.05 *((float) cargoesWeight/(float) maxLoadAge) >= Math.random())){
             //隨機數字小於 爆炸概率 ＝ true
             return false;
         }else{
@@ -231,4 +280,25 @@ public void feed(Cat c){
 public void Eat(){
  print("貓在吃魚"）；
  }
+
+   while(x>0){//x=清單中未送運的物品數,若還有物品未清繼續
+           ArrayList loadListTemp = new ArrayList();
+
+           Item itemTmp =(Item)itemArrayList.get(itemIndex);//第二次應為 X
+           u1Temp.cargoesWeight= u1Temp.cargoesWeight + itemTmp.getWeight();
+
+           if(u1Temp.cargoesWeight >= u1Temp.maxLoadage){
+               System.out.println("X="+x);
+               System.out.println( "Over loading...next ROCKet");
+           }else{
+               System.out.println( itemTmp.getName()+" "+ itemTmp.getWeight() +" "+u1Temp.cargoesWeight);
+               loadListTemp.add(itemTmp);
+               x = x-1;//清單中未送運的物品數
+               itemIndex += 1;//清單中從第幾個載起
+                }
+
+         loadList.add(loadListTemp);//for 149
+
+        }
  */
+
