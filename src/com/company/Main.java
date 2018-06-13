@@ -12,10 +12,6 @@ public class Main {
        Simulation ph1 = new Simulation();
        ph1.loadItems("phase-1.txt");
        ph1.loadU1();
-       //ph2.loadU1(I);
-       //System.out.println(Math.random());//-(17000/18000*0.05));
-       //System.out.println(8000.0/18000.0*0.01*10);
-
     }
 }
 
@@ -149,23 +145,34 @@ class Simulation{
 
         int x = itemArrayList.size();//待運件數
         int itemIndex = 0;// 要裝入火箭的物品標號
-        while (itemIndex <= x) {
+        while (itemIndex < x) {
 
             U1 u1Temp = new U1();//裝載中的火箭
             System.out.println();
             System.out.println("loading...");
 
 
+
             //
-            for (itemIndex = 0; itemIndex <= x; itemIndex++) {//裝貨
+            for (itemIndex = 0 ; itemIndex < x ; itemIndex++) {//裝貨
                 Item itemTmp = (Item) itemArrayList.get(itemIndex);//從運送清單itemArrayList取出要裝的貨物itemTmp
 
                 if (u1Temp.canCarry(itemTmp.getWeight(), u1Temp.maxLoadAge)) {
                     System.out.println("可以裝" + itemTmp.getName());
                     loadList.add(itemTmp);
+                    //System.out.println(loadList.indexOf(itemIndex));//會報-1？
+                    if(itemIndex == itemArrayList.size() ){rockArray.add(loadList);}
+                    System.out.print("---"+rockArray.size()+"---");
 
                 } else {
+                    itemIndex = itemIndex-1;
+                    rockArray.add(loadList);
                     System.out.println("裝不下" + itemTmp.getName());
+                    //這裡就要結束上一個u1Temp 另建一個 u1Temp
+                    U1 u1Temp2 = new U1();
+                    u1Temp = u1Temp2;
+                    ArrayList loadlist2 = new ArrayList();
+                    loadList = loadlist2;
 
                 }
             }
