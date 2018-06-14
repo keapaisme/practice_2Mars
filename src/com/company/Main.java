@@ -11,10 +11,11 @@ public class Main {
        //ph1.loadItems("phase-1.txt");
        Simulation ph1 = new Simulation();
        ph1.loadItems("phase-1.txt");
+       ph1.loadU1(new U1());
     }
 }
 
-//Item類含火箭要携帶的物品及其重量
+//OK------------------Item類含火箭要携帶的物品及其重量
 class Item{
     int weight ;
     String name;
@@ -38,39 +39,32 @@ class Item{
     }
 }
 
-//SpaceShip
+//OK------------------SpaceShip
 interface SpaceShip {
     boolean launch();
     boolean land();
-    boolean canCarry(int weight);
-    int carry(int weight);
+    boolean canCarry(Item item);
+    int carry(Item item);
 }
 
 //Rocket:
 class Rocket implements SpaceShip {
     //filed
-    //int rocketCost;//火箭成本
-    //int limitLoadAge;//火箭載重限制
-    int rocketWeight;//火箭實時重量
-    int rocketNetWeight;//火箭自重
-    int cargoesWeight;//目前貨物載重量
-    int maxLoadAge ;//火箭總限重
-    //double expRate;//任務爆炸概率
+    int cargoesWeight;
+    int rocketCurrentWeight;
+    int limitLoadAge;
+    int rocketNetWeight;
+    int maxLoadAge;
 
     boolean launch;
     boolean land;
 
     //const
     public Rocket(){
-        //this.rocketCost=0;
-        //this.limitLoadAge=0;
-        this.rocketWeight=0;
-        //this.rocketNetWeight=0;
-        this.cargoesWeight=0;
-        this.maxLoadAge=0;
-        //this.expRate = 0.0;
-        this.land=true;
-        this.launch=true;
+
+
+        land=true;
+        launch=true;
     }
 
     @Override
@@ -78,17 +72,19 @@ class Rocket implements SpaceShip {
         return true;
     }
     @Override
-    public boolean land(){ return true; }
+    public boolean land(){
+        return true;
+    }
     @Override//傳入Item.getWeight 更新火箭目前重量
-    public int carry(int getWeight) {//物品重量
-        rocketWeight = cargoesWeight + rocketNetWeight;
-        return rocketWeight;
+    public int carry(Item item) {//物品重量
+
+        this.rocketCurrentWeight = this.cargoesWeight + this.rocketNetWeight;
+        return rocketCurrentWeight;
     }
     @Override//回傳火箭能否搭載此物品
-    public boolean canCarry(int getWeight) {
-        cargoesWeight = cargoesWeight + getWeight;
-        if( cargoesWeight < maxLoadAge ){//物品總種 ＜ 火箭最大載重
-
+    public boolean canCarry(Item item) {
+        cargoesWeight = cargoesWeight + item.getWeight();
+        if( cargoesWeight <= limitLoadAge ){//物品總種 ＜= 火箭最大載重
             return true;
         }else{
             return false;
@@ -114,8 +110,9 @@ class Simulation{
 
     //設定使用火箭
     // +++ public void getUn(String){return ; }
+    //執行任務(返回任務總成本totalCost)
 
-    //loadItems:讀取運送物品清單,並返回Item ArrayList
+    //OK------------------oadItems:讀取運送物品清單,並返回Item ArrayList
     public ArrayList loadItems(String missCode)throws Exception{
 
             File file = new File(missCode);
@@ -134,9 +131,8 @@ class Simulation{
         return itemArrayList;
     }
 
-    //創建U1火箭:(傳出U1發射隊列)load(傳入貨物清單)
-
-    public ArrayList loadU1(String x, String y ){
+    //OK------------------創建U1火箭隊列:(傳出U1發射隊列)load(傳入貨物清單)
+    public ArrayList loadU1(U1 u1Temp){
         //火箭成本 = 1 亿美元
         //火箭重量 = 10 公吨
         //能携带的最高货物重量（包括自重） = 18 公吨
@@ -146,33 +142,31 @@ class Simulation{
         int itemIndex = 0;// 要裝入火箭的物品標號
         while (itemIndex < x) {
 
-            U1 u1Temp = new U1();//裝載中的火箭
-
             System.out.println();
-            System.out.println("loading...");
+            System.out.println("U1_"+ rockArray.size()+"裝運...");
 
             for (itemIndex = 0 ; itemIndex < x ; itemIndex++) {//裝貨
                 Item itemTmp = (Item) itemArrayList.get(itemIndex);//從運送清單itemArrayList取出要裝的貨物itemTmp
-
-                if (u1Temp.canCarry(itemTmp.getWeight(), u1Temp.maxLoadAge)) {
-                    System.out.println("可以裝" + itemTmp.getName());
+                u1Temp.carry(itemTmp);//update the rocketCurrentWeight
+                //如果未超過可載運量⋯⋯
+                if (u1Temp.canCarry(itemTmp)) {
                     loadList.add(itemTmp);
-
-                    if(itemIndex == itemArrayList.size() ){rockArray.add(loadList);}
-                    System.out.print("---"+rockArray.size()+"---");
+                    System.out.println(" "+itemTmp.getName());
                 } else {
                     itemIndex = itemIndex-1;
                     rockArray.add(loadList);
-                    System.out.println("裝不下" + itemTmp.getName());
+                    // print current weight
+                    System.out.println(u1Temp.rocketCurrentWeight);
+                    System.out.println("\n"+"U1-"+ rockArray.size()+":"+"裝運...");
                     //這裡就要結束上一個u1Temp 另建一個 u1Temp
                     U1 u1Temp2 = new U1();
                     u1Temp = u1Temp2;
-                    ArrayList loadlist2 = new ArrayList();
-                    loadList = loadlist2;
+                    ArrayList loadList2 = new ArrayList();
+                    loadList = loadList2;
                 }
             }
         }
-        //執行任務(返回任務總成本totalCost)
+        System.out.println(u1Temp.rocketCurrentWeight);
         return rockArray;
     }
 
@@ -216,19 +210,36 @@ class Simulation{
 (傳出是否爆炸)launch(傳入總貨重)
     隨機計算是否爆炸//執行任務(返回任務總成本totalCost)
     將T/F 覆蓋存入 ROCKET
- */
-public class U1 extends Rocket {
-    public g
-    //limitLoadAge = 8000; //携带货物的重量（不含自重）
-    //rocketNetWeight = 10000;
+*/
+
+//創建U1
+class U1 extends Rocket {
+    //火箭成本 = 1 亿美元
+    //火箭重量 = 10 公吨
+    //能携带的最高货物重量（包括自重） = 18 公吨
+
+    public U1() {
+        //super();
+        maxLoadAge = 18000;
+        rocketNetWeight = 10000;
+        rocketCurrentWeight = rocketNetWeight;
+        limitLoadAge = maxLoadAge - rocketNetWeight;
+
+    }
+
     double launchExpRate = 0.05;
     double landExpRate = 0.01;
-    double missonExpRate = expRate * (cargoesWeight/maxLoadAge);// 執行發射及著陸爆炸概率
+    //int limitLoadAge = maxLoadAge - rocketNetWeight; //携带货物的重量（不含自重）
+    //double missonExpRate = expRate * (cargoesWeight/maxLoadAge);// 執行發射及著陸爆炸概率
 
     @Override
     public boolean land() {
-        if (1>0) return true;
-        else return false;
+        if((launchExpRate *((float) cargoesWeight/(float) maxLoadAge) >= Math.random())){
+            //隨機數字小於 爆炸概率 ＝ true
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public boolean launch ( ){
@@ -244,5 +255,6 @@ public class U1 extends Rocket {
      //着陆时爆炸的概率 = 1% *（携带的货物重量 / 货物重量上限
 }
 
+//創建U2
 class U2 extends Rocket{}
 
