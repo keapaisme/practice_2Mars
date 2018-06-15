@@ -3,13 +3,3 @@
 2building tools=2000
 3building tools=5000
 4building tools=5000
-5building tools=2000
-6building tools=1000
-7building tools=5000
-8building tools=6000
-9shelter equipment=5000
-10construction equipment=5000
-11plants=1000
-12steel=8000
-13books=1000
-14water=5000

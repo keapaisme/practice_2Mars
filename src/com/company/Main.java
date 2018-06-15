@@ -1,4 +1,5 @@
 package com.company;
+import java.awt.*;
 import java.io.File;
 import java.util.*;
 //import java.util.regex.Pattern;
@@ -12,6 +13,7 @@ public class Main {
        Simulation ph1 = new Simulation();
        ph1.loadItems("phase-1.txt");
        ph1.loadU1(new U1());
+       ph1.runSimulation();
     }
 }
 
@@ -62,7 +64,6 @@ class Rocket implements SpaceShip {
     //const
     public Rocket(){
 
-
         land=true;
         launch=true;
     }
@@ -77,7 +78,6 @@ class Rocket implements SpaceShip {
     }
     @Override//傳入Item.getWeight 更新火箭目前重量
     public int carry(Item item) {//物品重量
-
         this.rocketCurrentWeight = this.cargoesWeight + this.rocketNetWeight;
         return rocketCurrentWeight;
     }
@@ -97,6 +97,7 @@ class Simulation{
     //String missCode;// mission code : ph1,ph2
         ArrayList itemArrayList ;
         ArrayList rockArray ;
+        ArrayList weightPerRocket;//火箭隊列每個火箭重量參數 携带的货物重量 / 货物重量上限
         int totalCost ;
         // +++ String rocketUn; //使用火箭類型
 
@@ -104,6 +105,7 @@ class Simulation{
     public Simulation(){
         this.itemArrayList = new ArrayList();
         this.rockArray = new ArrayList();
+        this.weightPerRocket = new ArrayList();
         this.totalCost = 0 ;
         // +++ this.rocketUn = getUn();
     }
@@ -138,6 +140,7 @@ class Simulation{
         //能携带的最高货物重量（包括自重） = 18 公吨
 
         ArrayList loadList = new ArrayList();//每個火箭裝載的貨品內容
+
         int x = itemArrayList.size();//待運件數
         int itemIndex = 0;// 要裝入火箭的物品標號
         while (itemIndex < x) {
@@ -145,18 +148,23 @@ class Simulation{
             System.out.println();
             System.out.println("U1_"+ rockArray.size()+"裝運...");
 
-            for (itemIndex = 0 ; itemIndex < x ; itemIndex++) {//裝貨
+            for (itemIndex = 0 ; itemIndex < x ; itemIndex ++) {//裝貨
                 Item itemTmp = (Item) itemArrayList.get(itemIndex);//從運送清單itemArrayList取出要裝的貨物itemTmp
                 u1Temp.carry(itemTmp);//update the rocketCurrentWeight
                 //如果未超過可載運量⋯⋯
                 if (u1Temp.canCarry(itemTmp)) {
                     loadList.add(itemTmp);
                     System.out.println(" "+itemTmp.getName());
+                    if( itemIndex == x-1 ) {
+                        rockArray.add(loadList);
+                        weightPerRocket.add(u1Temp.rocketCurrentWeight-u1Temp.rocketNetWeight);//將每個火箭的載重加入發射序列
+                    }//己經裝運最後一個了，此時無論有否載滿均需將火箭加入發射陣列
                 } else {
                     itemIndex = itemIndex-1;
                     rockArray.add(loadList);
                     // print current weight
                     System.out.println(u1Temp.rocketCurrentWeight);
+                    weightPerRocket.add(u1Temp.rocketCurrentWeight-u1Temp.rocketNetWeight);//將每個火箭的載重加入發射序列
                     System.out.println("\n"+"U1-"+ rockArray.size()+":"+"裝運...");
                     //這裡就要結束上一個u1Temp 另建一個 u1Temp
                     U1 u1Temp2 = new U1();
@@ -172,8 +180,6 @@ class Simulation{
 
     //創建U2火箭:
     public ArrayList loadU2() {
-
-
         return itemArrayList;//改
     }
 
@@ -183,26 +189,19 @@ class Simulation{
     *火星发射每个火箭所需的总预算。然后，runSimulation 返回发射所有火箭
     *所需的总预算（包括撞毁的火箭带来的成本）
     */
-    public int runSimulation (ArrayList rockArray , String rocketUn) {
-        ArrayList runList = rockArray; //runList 待發射火箭的序列
-        int i = runList.size();//待發射火箭總數
-        int x = 1 ;//發射序號
+    public int runSimulation() {//待發射火箭的序列,火箭類別
+        //rocket.
+        int i = weightPerRocket.size();//待發射火箭總數
+        int x = 0 ;//發射序號
 
-        while( !runList.isEmpty() ){//火箭未發射完
-            switch (rocketUn){
-                case "U1":
-                    U1 temp = new U1();
-                    temp = (U1) runList.get(x-1);
-                    temp.launch();
-
-
-                    break;
-                case "U2":
-                    System.out.print("2");break;
-                default:
-            }
+        while( x < i){//火箭未發射完
+            U1 u1 = new U1();
+            int wt = (int) weightPerRocket.get(x);
+            u1.launch(wt);
+            System.out.println();
+            x+=1;
         }
-        return 500;
+        return x;
     }
 }
 
@@ -234,19 +233,23 @@ class U1 extends Rocket {
 
     @Override
     public boolean land() {
-        if((launchExpRate *((float) cargoesWeight/(float) maxLoadAge) >= Math.random())){
+
+        if((landExpRate *((float) cargoesWeight/(float) limitLoadAge) >= Math.random())){
             //隨機數字小於 爆炸概率 ＝ true
+
             return false;
         }else{
             return true;
         }
     }
 
-    public boolean launch ( ){
-        if((launchExpRate *((float) cargoesWeight/(float) maxLoadAge) >= Math.random())){
+    public boolean launch (int wt){
+        if((launchExpRate *((float) wt/(float) limitLoadAge) >= Math.random())){
             //隨機數字小於 爆炸概率 ＝ true
+            System.out.println("成功發射");
             return false;
         }else{
+            System.out.println("發射失敗");
             return true;
         }
     }
