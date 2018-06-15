@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+    <list id="05e876a7-53e5-492b-9b70-1915276289e1" name="New changelist" comment="" />
     <list default="true" id="71ef51f2-6450-4cce-95c2-fd0a3fd9bf04" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phase-1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/phase-1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phase-2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/phase-2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <list id="c8d06cec-a341-46e8-8f25-612d3d260490" name="20180612" comment="" />
-    <list id="05e876a7-53e5-492b-9b70-1915276289e1" name="New changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,8 +23,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="145" column="31" lean-forward="true" selection-start-line="145" selection-start-column="31" selection-end-line="145" selection-end-column="31" />
+            <state relative-caret-position="344">
+              <caret line="250" column="18" lean-forward="true" selection-start-line="250" selection-start-column="18" selection-end-line="250" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#584#585#0" expanded="true" />
@@ -256,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528856182789</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="&#10;loadU1 ok&#10;runSimulation() ok">
+      <created>1529085024689</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1529085024689</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -271,17 +276,17 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.329653" />
       <window_info anchor="right" id="Maven Projects" order="1" weight="0.32875606" />
-      <window_info anchor="bottom" x="214" y="341" width="911" height="890" id="Run" order="10" type="WINDOWED" weight="0.3895899" />
+      <window_info anchor="bottom" x="256" y="70" width="911" height="890" id="Run" order="10" type="WINDOWED" weight="0.3895899" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.2629921" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.21581921" side_tool="true" visible="true" weight="0.32956383" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.21581921" side_tool="true" visible="true" weight="0.134895" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info active="true" id="Debug" order="7" sideWeight="0.7841808" visible="true" weight="0.32956383" />
+      <window_info id="Debug" order="7" sideWeight="0.7841808" visible="true" weight="0.134895" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
@@ -364,26 +369,27 @@
     <MESSAGE value="u1Load rocketArray OK." />
     <MESSAGE value="Merge branch 'master' of https://github.com/keapaisme/practice_2Mars&#10;&#10;* 'master' of https://github.com/keapaisme/practice_2Mars:&#10;  羅輯錯誤，要改寫Rocket 的 carry() 及 Simulation 的 loadU1&#10;&#10;# Conflicts:&#10;#&#9;out/production/mars/com/company/Rocket.class&#10;#&#9;out/production/mars/com/company/Simulation.class&#10;#&#9;out/production/mars/com/company/U1.class&#10;#&#9;out/production/mars/com/company/U2.class&#10; &#10; pass" />
     <MESSAGE value="&#10;loadU1 finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;loadU1 finished" />
+    <MESSAGE value="&#10;loadU1 ok&#10;runSimulation() ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;loadU1 ok&#10;runSimulation() ok" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>246</line>
+          <line>249</line>
           <properties />
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>198</line>
+          <line>199</line>
           <properties />
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>165</line>
+          <line>166</line>
           <properties />
           <option name="timeStamp" value="67" />
         </line-breakpoint>
@@ -640,13 +646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/phase-1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.base/jdk/internal/util/Preconditions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
@@ -664,10 +663,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/phase-1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="145" column="31" lean-forward="true" selection-start-line="145" selection-start-column="31" selection-end-line="145" selection-end-column="31" />
+        <state relative-caret-position="344">
+          <caret line="250" column="18" lean-forward="true" selection-start-line="250" selection-start-column="18" selection-end-line="250" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#584#585#0" expanded="true" />

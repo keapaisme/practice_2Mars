@@ -156,6 +156,7 @@ class Simulation{
                     loadList.add(itemTmp);
                     System.out.println(" "+itemTmp.getName());
                     if( itemIndex == x-1 ) {
+                        u1Temp.carry(itemTmp);//update the rocketCurrentWeight
                         rockArray.add(loadList);
                         weightPerRocket.add(u1Temp.rocketCurrentWeight-u1Temp.rocketNetWeight);//將每個火箭的載重加入發射序列
                     }//己經裝運最後一個了，此時無論有否載滿均需將火箭加入發射陣列
@@ -244,18 +245,24 @@ class U1 extends Rocket {
     }
 
     public boolean launch (int wt){
-        if((launchExpRate *((float) wt/(float) limitLoadAge) >= Math.random())){
-            //隨機數字小於 爆炸概率 ＝ true
-            System.out.println("成功發射");
+        double randomExpRate = Math.random();
+        double xxx = launchExpRate * wt / limitLoadAge;
+        if( (launchExpRate * ( wt / limitLoadAge)) + (Math.random()) > 0.50 ){
+            //隨機數字+爆炸概率 >= 50% : 爆炸
+            System.out.println("发射时爆炸的概率 ="+ xxx);
+            System.out.println("random 概率 ="+ randomExpRate);
+            System.out.println("發射失敗");
             return false;
         }else{
-            System.out.println("發射失敗");
+            System.out.println("发射时爆炸的概率 ="+ xxx);
+            System.out.println("random 概率 ="+ randomExpRate);
+            System.out.println("成功發射");
             return true;
         }
     }
 
-    //       发射时爆炸的概率 = 5% *（携带的货物重量 / 货物重量上限）
-     //着陆时爆炸的概率 = 1% *（携带的货物重量 / 货物重量上限
+    //发射时爆炸的概率 = 5% *（携带的货物重量 / 货物重量上限）
+    //着陆时爆炸的概率 = 1% *（携带的货物重量 / 货物重量上限
 }
 
 //創建U2
