@@ -43,8 +43,8 @@ class Item{
 
 //OK------------------SpaceShip
 interface SpaceShip {
-    boolean launch();
-    boolean land();
+    boolean launch(int temp);
+    boolean land(int temp);
     boolean canCarry(Item item);
     int carry(Item item);
 }
@@ -69,11 +69,11 @@ class Rocket implements SpaceShip {
     }
 
     @Override
-    public boolean launch() {
+    public boolean launch(int temp) {
         return true;
     }
     @Override
-    public boolean land(){
+    public boolean land(int temp){
         return true;
     }
     @Override//傳入Item.getWeight 更新火箭目前重量
@@ -233,13 +233,19 @@ class U1 extends Rocket {
     //double missonExpRate = expRate * (cargoesWeight/maxLoadAge);// 執行發射及著陸爆炸概率
 
     @Override
-    public boolean land() {
-
-        if((landExpRate *((float) cargoesWeight/(float) limitLoadAge) >= Math.random())){
-            //隨機數字小於 爆炸概率 ＝ true
-
+    public boolean land(int wt) {
+        double randomExpRate = Math.random();
+        double xxx = launchExpRate * wt / limitLoadAge;
+        if( (landExpRate * ( wt / limitLoadAge)) + (Math.random()) > 0.50 ){
+            //隨機數字+爆炸概率 >= 50% : 爆炸
+            System.out.println("发射时爆炸的概率 ="+ xxx);
+            System.out.println("random 概率 ="+ randomExpRate);
+            System.out.println("發射失敗");
             return false;
         }else{
+            System.out.println("发射时爆炸的概率 ="+ xxx);
+            System.out.println("random 概率 ="+ randomExpRate);
+            System.out.println("成功發射");
             return true;
         }
     }
