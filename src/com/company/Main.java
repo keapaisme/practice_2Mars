@@ -224,53 +224,44 @@ class U1 extends Rocket {
         rocketNetWeight = 10000;
         rocketCurrentWeight = rocketNetWeight;
         limitLoadAge = maxLoadAge - rocketNetWeight;
-
     }
-
     double launchExpRate = 0.05;
     double landExpRate = 0.01;
-    //int limitLoadAge = maxLoadAge - rocketNetWeight; //携带货物的重量（不含自重）
-    //double missonExpRate = expRate * (cargoesWeight/maxLoadAge);// 執行發射及著陸爆炸概率
 
+//着陆时爆炸的概率 = 1% *（携带的货物重量 / 货物重量上限
     @Override
     public boolean land(int wt) {
+
         double randomExpRate = Math.random();
         double xxx = launchExpRate * wt / limitLoadAge;
-        if( (landExpRate * ( wt / limitLoadAge)) + (Math.random()) > 0.50 ){
+        if( xxx + randomExpRate > 0.50 ){
             //隨機數字+爆炸概率 >= 50% : 爆炸
-            System.out.println("发射时爆炸的概率 ="+ xxx);
-            System.out.println("random 概率 ="+ randomExpRate);
+            System.out.println("发射时爆炸的概率:"+ xxx +"random 概率:"+ randomExpRate +" = "+ (xxx+randomExpRate));
             System.out.println("發射失敗");
             return false;
         }else{
-            System.out.println("发射时爆炸的概率 ="+ xxx);
-            System.out.println("random 概率 ="+ randomExpRate);
+            System.out.println("发射时爆炸的概率:"+ xxx +"random 概率:"+ randomExpRate +" = "+ (xxx+randomExpRate));
             System.out.println("成功發射");
             return true;
         }
     }
-
+    //发射时爆炸的概率 = 5% *（携带的货物重量 / 货物重量上限）
     public boolean launch (int wt){
         double randomExpRate = Math.random();
         double xxx = launchExpRate * wt / limitLoadAge;
-        if( (launchExpRate * ( wt / limitLoadAge)) + (Math.random()) > 0.50 ){
+        if( xxx + randomExpRate > 0.50 ){
             //隨機數字+爆炸概率 >= 50% : 爆炸
-            System.out.println("发射时爆炸的概率 ="+ xxx);
-            System.out.println("random 概率 ="+ randomExpRate);
+            System.out.println((randomExpRate+xxx)*100);
             System.out.println("發射失敗");
             return false;
         }else{
-            System.out.println("发射时爆炸的概率 ="+ xxx);
-            System.out.println("random 概率 ="+ randomExpRate);
+            System.out.println((randomExpRate+xxx)*100);
             System.out.println("成功發射");
             return true;
         }
     }
-
-    //发射时爆炸的概率 = 5% *（携带的货物重量 / 货物重量上限）
-    //着陆时爆炸的概率 = 1% *（携带的货物重量 / 货物重量上限
 }
 
 //創建U2
-class U2 extends Rocket{}
+class U2 extends U1{}
 
