@@ -8,10 +8,18 @@ public class Main {
 
     public static void main(String[] args)throws Exception {
 	// write your code here
-       Simulation ph1 = new Simulation();
-       ph1.loadItems("phase-1.txt");
-       ph1.loadU1(new U1());
-       ph1.runSimulation();
+       Simulation u1Misson1 = new Simulation();
+       u1Misson1.loadItems("phase-1.txt");
+       u1Misson1.loadU1(new U1());
+       u1Misson1.runSimulation(new U1());
+
+       System.out.println("+++++++++++++++++++++");
+
+       Simulation u2Misson1 = new Simulation();
+       u2Misson1.loadItems("phase-1.txt");
+       u2Misson1.loadU2(new U2());
+       u2Misson1.runSimulation(new U2());
+
     }
 }
 
@@ -60,10 +68,12 @@ class Rocket implements SpaceShip {
     boolean launch;
     boolean land;
 
+
     //const
     public Rocket(){
         land=true;
         launch=true;
+        int rocketCost = 0;
     }
 
     @Override
@@ -127,7 +137,7 @@ class Simulation{
     }
 
     //OK------------------創建U1火箭隊列:(傳出U1發射隊列)load(傳入貨物清單)
-    public ArrayList loadU1(U1 u1Temp){
+    public ArrayList loadU1(Rocket u1Temp){
         //火箭成本 = 1 亿美元
         //火箭重量 = 10 公吨
         //能携带的最高货物重量（包括自重） = 18 公吨
@@ -173,8 +183,45 @@ class Simulation{
     }
 
     //創建U2火箭:
-    public ArrayList loadU2() {
-        return itemArrayList;//改
+    public ArrayList loadU2(Rocket temp) {
+        ArrayList loadList = new ArrayList();//每個火箭裝載的貨品內容
+
+        int x = itemArrayList.size();//待運件數
+        int itemIndex = 0;// 要裝入火箭的物品標號
+        while (itemIndex < x) {
+
+            System.out.println();
+            System.out.println("U2-"+ rockArray.size()+"裝運...");
+
+            for (itemIndex = 0 ; itemIndex < x ; itemIndex ++) {//裝貨
+                Item itemTmp = (Item) itemArrayList.get(itemIndex);//從運送清單itemArrayList取出要裝的貨物itemTmp
+                temp.carry(itemTmp);//update the rocketCurrentWeight
+                //如果未超過可載運量⋯⋯
+                if (temp.canCarry(itemTmp)) {
+                    loadList.add(itemTmp);
+                    System.out.println(" "+itemTmp.getName());
+                    if( itemIndex == x-1 ) {
+                        temp.carry(itemTmp);//update the rocketCurrentWeight
+                        rockArray.add(loadList);
+                        weightPerRocket.add(temp.rocketCurrentWeight-temp.rocketNetWeight);//將每個火箭的載重加入發射序列
+                    }//己經裝運最後一個了，此時無論有否載滿均需將火箭加入發射陣列
+                } else {
+                    itemIndex = itemIndex-1;
+                    rockArray.add(loadList);
+                    // print current weight
+                    System.out.println(temp.rocketCurrentWeight);
+                    weightPerRocket.add(temp.rocketCurrentWeight-temp.rocketNetWeight);//將每個火箭的載重加入發射序列
+                    System.out.println("\n"+"U2-"+ rockArray.size()+":"+"裝運...");
+                    //這裡就要結束上一個u1Temp 另建一個 u1Temp
+                    U2 temp2 = new U2();
+                    temp = temp2;
+                    ArrayList loadList2 = new ArrayList();
+                    loadList = loadList2;
+                }
+            }
+        }
+        System.out.println(temp.rocketCurrentWeight);
+        return rockArray;
     }
 
     /**
@@ -183,24 +230,24 @@ class Simulation{
     *火星发射每个火箭所需的总预算。然后，runSimulation 返回发射所有火箭
     *所需的总预算（包括撞毁的火箭带来的成本）
     */
-    public long runSimulation() {//待發射火箭的序列,火箭類別
+    public long runSimulation(Rocket tmp){//待發射火箭的序列,火箭類別
         //rocket.
         int no;//火箭的序號
         int success = 0;
         int failed = 0;
 
         while(!weightPerRocket.isEmpty()){//火箭未發射完
-            U1 u1 = new U1();
+            //Rocket rocket = new Rocket(); //修改傳入火箭
             int wt = (int) weightPerRocket.get(0);//將序列裡的載重--＞wt
             no = success+1;
             System.out.println();
             System.out.println("\nU-"+no+":發射⋯⋯");
-            if(u1.launch(wt) && u1.land(wt)) {
+            if(tmp.launch(wt) && tmp.land(wt)) {
                 weightPerRocket.remove(0);//成功發射及萶陸的火箭移除隊列
-                totalCost += u1.rocketCost;
+                totalCost += tmp.rocketCost;
                 success += 1;
             }else {
-                totalCost += u1.rocketCost;
+                totalCost += tmp.rocketCost;
                 failed += 1;
             }
         }
@@ -212,11 +259,7 @@ class Simulation{
     }
 }
 
-/*
-(傳出是否爆炸)launch(傳入總貨重)
-    隨機計算是否爆炸//執行任務(返回任務總成本totalCost)
-    將T/F 覆蓋存入 ROCKET
-*/
+
 
 //創建U1
 class U1 extends Rocket {
@@ -235,7 +278,7 @@ class U1 extends Rocket {
     double launchExpRate = 0.05;
     double landExpRate = 0.01;
 
-//着陆时爆炸的概率 = 1% *（携带的货物重量 / 货物重量上限
+    //着陆时爆炸的概率 = 1% *（携带的货物重量 / 货物重量上限
     @Override
     public boolean land(int wt) {
         double randomExpRate = Math.random();
@@ -267,5 +310,53 @@ class U1 extends Rocket {
     }
 }
 
-//創建U2
-class U2 extends U1{}
+/**
+ * 火箭成本 = 1.2 亿美元
+ * 火箭重量 = 18 公吨
+ * 能携带的最高货物重量（包括自重） = 29 公吨
+ * 发射时爆炸的概率 = 4% *（携带的货物重量 / 货物重量上限）
+ * 着陆时爆炸的概率 = 8% *（携带的货物重量 / 货物重量上限）
+ */
+class U2 extends Rocket{
+    public U2() {
+
+        rocketCost = 120000000;
+        maxLoadAge = 29000;
+        rocketNetWeight = 18000;
+        rocketCurrentWeight = rocketNetWeight;
+        limitLoadAge = maxLoadAge - rocketNetWeight;
+    }
+    double launchExpRate = 0.04;
+    double landExpRate = 0.08;
+
+    //着陆时爆炸的概率 = 8% *（携带的货物重量 / 货物重量上限
+    @Override
+    public boolean land(int wt) {
+        double randomExpRate = Math.random();
+        double xxx = landExpRate * wt / limitLoadAge;
+        if( xxx + randomExpRate > 0.8 ){
+            //隨機數字+爆炸概率 >= 80% : 爆炸
+            //System.out.println((randomExpRate+xxx)*100);
+            System.out.print("著陸失敗");
+            return false;
+        }else{
+            //System.out.println((randomExpRate+xxx)*100);
+            System.out.print("成功著陸");
+            return true;
+        }
+    }
+    //发射时爆炸的概率 = 4% *（携带的货物重量 / 货物重量上限）
+    public boolean launch (int wt){
+        double randomExpRate = Math.random();
+        double xxx = launchExpRate * wt / limitLoadAge;
+        if( xxx + randomExpRate > 0.8 ){//隨機數字+爆炸概率 >= 80% : 爆炸
+            //System.out.println((randomExpRate+xxx)*100);
+            System.out.print("發射失敗");
+            return false;
+        }else{
+            //System.out.println((randomExpRate+xxx)*100);
+            System.out.print("成功發射:");
+            return true;
+        }
+    }
+}
