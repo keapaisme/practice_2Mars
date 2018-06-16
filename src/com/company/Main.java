@@ -8,8 +8,6 @@ public class Main {
 
     public static void main(String[] args)throws Exception {
 	// write your code here
-
-       //ph1.loadItems("phase-1.txt");
        Simulation ph1 = new Simulation();
        ph1.loadItems("phase-1.txt");
        ph1.loadU1(new U1());
@@ -107,12 +105,7 @@ class Simulation{
         this.rockArray = new ArrayList();
         this.weightPerRocket = new ArrayList();
         this.totalCost = 0 ;
-        // +++ this.rocketUn = getUn();
     }
-
-    //設定使用火箭
-    // +++ public void getUn(String){return ; }
-    //執行任務(返回任務總成本totalCost)
 
     //OK------------------oadItems:讀取運送物品清單,並返回Item ArrayList
     public ArrayList loadItems(String missCode)throws Exception{
@@ -146,7 +139,7 @@ class Simulation{
         while (itemIndex < x) {
 
             System.out.println();
-            System.out.println("U1_"+ rockArray.size()+"裝運...");
+            System.out.println("U1-"+ rockArray.size()+"裝運...");
 
             for (itemIndex = 0 ; itemIndex < x ; itemIndex ++) {//裝貨
                 Item itemTmp = (Item) itemArrayList.get(itemIndex);//從運送清單itemArrayList取出要裝的貨物itemTmp
@@ -192,33 +185,27 @@ class Simulation{
     */
     public long runSimulation() {//待發射火箭的序列,火箭類別
         //rocket.
-        int i = weightPerRocket.size();//待發射火箭總數
-        int xn = 0 ;//發射序號
-        int y = 0 ;//最後一次發射序號
+        int no;//火箭的序號
         int success = 0;
         int failed = 0;
 
-        while( xn < i){//火箭未發射完
+        while(!weightPerRocket.isEmpty()){//火箭未發射完
             U1 u1 = new U1();
-            int wt = (int) weightPerRocket.get(xn);
+            int wt = (int) weightPerRocket.get(0);//將序列裡的載重--＞wt
+            no = success+1;
             System.out.println();
+            System.out.println("\nU-"+no+":發射⋯⋯");
             if(u1.launch(wt) && u1.land(wt)) {
-                y = xn;
-                success += 1;
+                weightPerRocket.remove(0);//成功發射及萶陸的火箭移除隊列
                 totalCost += u1.rocketCost;
-                xn += 1;
-                if(xn == i){
-
-                }
+                success += 1;
             }else {
-                xn = y;
                 totalCost += u1.rocketCost;
                 failed += 1;
-
             }
-           // u1.land(wt);
         }
-        System.out.println("\n總費用＝"+totalCost);
+        //執行任務(返回任務總成本totalCost)
+        System.out.println("\n\n總費用＝"+totalCost);
         System.out.println("總共發射_"+(success+failed)+"_次。");
         System.out.println("成功發射_"+success+"_次。");
         return totalCost;
@@ -254,13 +241,13 @@ class U1 extends Rocket {
         double randomExpRate = Math.random();
         double xxx = landExpRate * wt / limitLoadAge;
         if( xxx + randomExpRate > 0.8 ){
-            //隨機數字+爆炸概率 >= 50% : 爆炸
-            System.out.println((randomExpRate+xxx)*100);
-            System.out.println("著陸失敗");
+            //隨機數字+爆炸概率 >= 80% : 爆炸
+            //System.out.println((randomExpRate+xxx)*100);
+            System.out.print("著陸失敗");
             return false;
         }else{
-            System.out.println((randomExpRate+xxx)*100);
-            System.out.println("成功著陸");
+            //System.out.println((randomExpRate+xxx)*100);
+            System.out.print("成功著陸");
             return true;
         }
     }
@@ -268,14 +255,13 @@ class U1 extends Rocket {
     public boolean launch (int wt){
         double randomExpRate = Math.random();
         double xxx = launchExpRate * wt / limitLoadAge;
-        if( xxx + randomExpRate > 0.8 ){
-            //隨機數字+爆炸概率 >= 50% : 爆炸
-            System.out.println((randomExpRate+xxx)*100);
-            System.out.println("發射失敗");
+        if( xxx + randomExpRate > 0.8 ){//隨機數字+爆炸概率 >= 80% : 爆炸
+            //System.out.println((randomExpRate+xxx)*100);
+            System.out.print("發射失敗");
             return false;
         }else{
-            System.out.println((randomExpRate+xxx)*100);
-            System.out.println("成功發射");
+            //System.out.println((randomExpRate+xxx)*100);
+            System.out.print("成功發射:");
             return true;
         }
     }
@@ -283,4 +269,3 @@ class U1 extends Rocket {
 
 //創建U2
 class U2 extends U1{}
-
