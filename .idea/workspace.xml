@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+    <list id="c8d06cec-a341-46e8-8f25-612d3d260490" name="20180612" comment="" />
     <list id="05e876a7-53e5-492b-9b70-1915276289e1" name="New changelist" comment="" />
     <list default="true" id="71ef51f2-6450-4cce-95c2-fd0a3fd9bf04" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phase-1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/phase-1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
-    <list id="c8d06cec-a341-46e8-8f25-612d3d260490" name="20180612" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +24,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="534">
-              <caret line="256" column="31" lean-forward="true" selection-start-line="256" selection-start-column="31" selection-end-line="256" selection-end-column="31" />
+            <state relative-caret-position="605">
+              <caret line="216" lean-forward="true" selection-start-line="216" selection-end-line="216" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#loadItems#0;class#Simulation#0" />
@@ -37,8 +37,8 @@
       <file leaf-file-name="phase-1.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/phase-1.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="95">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -125,6 +125,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="totalCost&#9;null&#9;null" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -264,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529087096690</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok">
+      <created>1529089551970</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1529089551970</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -279,17 +287,17 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.329653" />
       <window_info anchor="right" id="Maven Projects" order="1" weight="0.32875606" />
-      <window_info anchor="bottom" x="259" y="70" width="906" height="890" id="Run" order="10" type="WINDOWED" weight="0.3895899" />
+      <window_info anchor="bottom" x="250" y="22" width="906" height="890" id="Run" order="10" type="WINDOWED" weight="0.3895899" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.2629921" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.21581921" side_tool="true" visible="true" weight="0.1365105" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.21807909" side_tool="true" visible="true" weight="0.34329563" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info id="Debug" order="7" sideWeight="0.7841808" weight="0.134895" />
+      <window_info id="Debug" order="7" sideWeight="0.7819209" visible="true" weight="0.34329563" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
@@ -373,38 +381,35 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/keapaisme/practice_2Mars&#10;&#10;* 'master' of https://github.com/keapaisme/practice_2Mars:&#10;  羅輯錯誤，要改寫Rocket 的 carry() 及 Simulation 的 loadU1&#10;&#10;# Conflicts:&#10;#&#9;out/production/mars/com/company/Rocket.class&#10;#&#9;out/production/mars/com/company/Simulation.class&#10;#&#9;out/production/mars/com/company/U1.class&#10;#&#9;out/production/mars/com/company/U2.class&#10; &#10; pass" />
     <MESSAGE value="&#10;loadU1 finished" />
     <MESSAGE value="&#10;loadU1 ok&#10;runSimulation() ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;loadU1 ok&#10;runSimulation() ok" />
+    <MESSAGE value="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>199</line>
+          <line>255</line>
           <properties />
-          <option name="timeStamp" value="65" />
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>166</line>
+          <line>270</line>
           <properties />
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>145</line>
-          <properties />
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/company/Main.java</url>
-          <line>155</line>
-          <properties />
-          <option name="timeStamp" value="69" />
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="70" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="79" />
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="u1.rocketCost" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
@@ -587,15 +592,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/phase-1.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        <state relative-caret-position="95">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="256" column="31" lean-forward="true" selection-start-line="256" selection-start-column="31" selection-end-line="256" selection-end-column="31" />
+        <state relative-caret-position="605">
+          <caret line="216" lean-forward="true" selection-start-line="216" selection-end-line="216" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#loadItems#0;class#Simulation#0" />

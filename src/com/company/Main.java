@@ -57,13 +57,13 @@ class Rocket implements SpaceShip {
     int limitLoadAge;
     int rocketNetWeight;
     int maxLoadAge;
+    int rocketCost;
 
     boolean launch;
     boolean land;
 
     //const
     public Rocket(){
-
         land=true;
         launch=true;
     }
@@ -98,7 +98,7 @@ class Simulation{
         ArrayList itemArrayList ;
         ArrayList rockArray ;
         ArrayList weightPerRocket;//火箭隊列每個火箭重量參數 携带的货物重量 / 货物重量上限
-        int totalCost ;
+        long totalCost ;
         // +++ String rocketUn; //使用火箭類型
 
     //構造函數
@@ -190,19 +190,38 @@ class Simulation{
     *火星发射每个火箭所需的总预算。然后，runSimulation 返回发射所有火箭
     *所需的总预算（包括撞毁的火箭带来的成本）
     */
-    public int runSimulation() {//待發射火箭的序列,火箭類別
+    public long runSimulation() {//待發射火箭的序列,火箭類別
         //rocket.
         int i = weightPerRocket.size();//待發射火箭總數
-        int x = 0 ;//發射序號
+        int xn = 0 ;//發射序號
+        int y = 0 ;//最後一次發射序號
+        int success = 0;
+        int failed = 0;
 
-        while( x < i){//火箭未發射完
+        while( xn < i){//火箭未發射完
             U1 u1 = new U1();
-            int wt = (int) weightPerRocket.get(x);
-            u1.launch(wt);
+            int wt = (int) weightPerRocket.get(xn);
             System.out.println();
-            x+=1;
+            if(u1.launch(wt) && u1.land(wt)) {
+                y = xn;
+                success += 1;
+                totalCost += u1.rocketCost;
+                xn += 1;
+                if(xn == i){
+
+                }
+            }else {
+                xn = y;
+                totalCost += u1.rocketCost;
+                failed += 1;
+
+            }
+           // u1.land(wt);
         }
-        return x;
+        System.out.println("\n總費用＝"+totalCost);
+        System.out.println("總共發射_"+(success+failed)+"_次。");
+        System.out.println("成功發射_"+success+"_次。");
+        return totalCost;
     }
 }
 
@@ -220,6 +239,7 @@ class U1 extends Rocket {
 
     public U1() {
         //super();
+        rocketCost = 100000000;
         maxLoadAge = 18000;
         rocketNetWeight = 10000;
         rocketCurrentWeight = rocketNetWeight;
@@ -231,17 +251,16 @@ class U1 extends Rocket {
 //着陆时爆炸的概率 = 1% *（携带的货物重量 / 货物重量上限
     @Override
     public boolean land(int wt) {
-
         double randomExpRate = Math.random();
-        double xxx = launchExpRate * wt / limitLoadAge;
-        if( xxx + randomExpRate > 0.50 ){
+        double xxx = landExpRate * wt / limitLoadAge;
+        if( xxx + randomExpRate > 0.8 ){
             //隨機數字+爆炸概率 >= 50% : 爆炸
-            System.out.println("发射时爆炸的概率:"+ xxx +"random 概率:"+ randomExpRate +" = "+ (xxx+randomExpRate));
-            System.out.println("發射失敗");
+            System.out.println((randomExpRate+xxx)*100);
+            System.out.println("著陸失敗");
             return false;
         }else{
-            System.out.println("发射时爆炸的概率:"+ xxx +"random 概率:"+ randomExpRate +" = "+ (xxx+randomExpRate));
-            System.out.println("成功發射");
+            System.out.println((randomExpRate+xxx)*100);
+            System.out.println("成功著陸");
             return true;
         }
     }
@@ -249,7 +268,7 @@ class U1 extends Rocket {
     public boolean launch (int wt){
         double randomExpRate = Math.random();
         double xxx = launchExpRate * wt / limitLoadAge;
-        if( xxx + randomExpRate > 0.50 ){
+        if( xxx + randomExpRate > 0.8 ){
             //隨機數字+爆炸概率 >= 50% : 爆炸
             System.out.println((randomExpRate+xxx)*100);
             System.out.println("發射失敗");
