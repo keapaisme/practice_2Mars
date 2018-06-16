@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="c8d06cec-a341-46e8-8f25-612d3d260490" name="20180612" comment="" />
+    <list id="05e876a7-53e5-492b-9b70-1915276289e1" name="New changelist" comment="" />
     <list default="true" id="71ef51f2-6450-4cce-95c2-fd0a3fd9bf04" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phase-1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/phase-1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phase-2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/phase-2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
-    <list id="05e876a7-53e5-492b-9b70-1915276289e1" name="New changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,28 +22,14 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="31" column="59" lean-forward="true" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+            <state relative-caret-position="202">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#756#757#0" expanded="true" />
-                <element signature="e#783#784#0" expanded="true" />
-                <element signature="e#822#823#0" expanded="true" />
-                <element signature="e#854#855#0" expanded="true" />
-                <element signature="e#883#884#0" expanded="true" />
-                <element signature="e#912#913#0" expanded="true" />
-                <element signature="e#952#953#0" expanded="true" />
-                <element signature="e#988#989#0" expanded="true" />
                 <element signature="class#SpaceShip#0" />
-                <element signature="e#1563#1564#0" expanded="true" />
-                <element signature="e#1590#1591#0" expanded="true" />
-                <element signature="e#1639#1640#0" expanded="true" />
-                <element signature="e#1666#1667#0" expanded="true" />
                 <element signature="docComment;class#Simulation#0" />
                 <element signature="method#Simulation#0;class#Simulation#0" />
                 <element signature="method#runSimulation#0;class#Simulation#0" />
-                <element signature="e#7427#7442#0" />
-                <element signature="e#7597#7605#0" />
               </folding>
             </state>
           </provider>
@@ -56,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/phase-1.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
-              <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -103,9 +86,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="22" />
     <option name="width" value="1280" />
-    <option name="height" value="891" />
+    <option name="height" value="960" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -114,6 +96,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -159,9 +144,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -333,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529168798559</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok&#10;land() ok&#10;totalCost ok&#10;&#10;完成正確計算火箭發射成本&#10;完成模擬&#10;&#10;完成U1，U2&#10;第一階段任務&#10;&#10;完成PROJECT">
+      <created>1529173264704</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1529173264704</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -347,42 +336,43 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.329653" />
       <window_info anchor="right" id="Maven Projects" order="1" weight="0.32875606" />
-      <window_info active="true" anchor="bottom" x="32" y="78" width="446" height="869" id="Run" order="10" type="WINDOWED" visible="true" weight="0.3895899" />
-      <window_info anchor="bottom" id="Version Control" order="6" weight="0.2629921" />
+      <window_info anchor="bottom" x="32" y="78" width="446" height="869" id="Run" order="10" type="WINDOWED" weight="0.3895899" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="6" visible="true" weight="0.2621469" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.85536724" side_tool="true" visible="true" weight="0.26817447" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.85536724" side_tool="true" weight="0.27221325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Debug" order="7" sideWeight="0.14463277" weight="0.26817447" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.3299595" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Build" order="2" visible="true" weight="0.3343949" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299435" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Build" order="2" visible="true" weight="0.3343949" />
+      <window_info anchor="bottom" id="Message" order="0" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.3299595" />
-      <window_info anchor="bottom" id="Version Control" order="6" weight="0.2629921" />
+      <window_info anchor="bottom" x="184" y="35" width="911" height="890" id="Run" order="10" type="WINDOWED" weight="0.3895899" />
       <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5016949" side_tool="true" weight="0.20759289" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="5" />
-      <window_info anchor="bottom" x="184" y="35" width="911" height="890" id="Run" order="10" type="WINDOWED" weight="0.3895899" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299435" />
       <window_info active="true" id="Debug" order="7" sideWeight="0.49830508" visible="true" weight="0.26979" />
@@ -390,9 +380,8 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.329653" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.2629921" />
       <window_info active="true" anchor="bottom" id="Build" order="2" visible="true" weight="0.3343949" />
-      <window_info id="Capture Tool" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.49919224" weight="0.28926554" />
       <window_info anchor="right" id="Maven Projects" order="1" weight="0.32875606" />
@@ -445,7 +434,8 @@
     <MESSAGE value="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok&#10;land() ok&#10;totalCost ok" />
     <MESSAGE value="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok&#10;land() ok&#10;totalCost ok&#10;&#10;完成正確計算火箭發射成本&#10;完成模擬" />
     <MESSAGE value="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok&#10;land() ok&#10;totalCost ok&#10;&#10;完成正確計算火箭發射成本&#10;完成模擬&#10;&#10;完成U1，U2&#10;第一階段任務" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok&#10;land() ok&#10;totalCost ok&#10;&#10;完成正確計算火箭發射成本&#10;完成模擬&#10;&#10;完成U1，U2&#10;第一階段任務" />
+    <MESSAGE value="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok&#10;land() ok&#10;totalCost ok&#10;&#10;完成正確計算火箭發射成本&#10;完成模擬&#10;&#10;完成U1，U2&#10;第一階段任務&#10;&#10;完成PROJECT" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;loadU1 ok&#10;runSimulation() ok&#10;launch() ok&#10;land() ok&#10;totalCost ok&#10;&#10;完成正確計算火箭發射成本&#10;完成模擬&#10;&#10;完成U1，U2&#10;第一階段任務&#10;&#10;完成PROJECT" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -512,24 +502,10 @@
           <caret line="22" column="11" lean-forward="true" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
             <element signature="class#SpaceShip#0" />
-            <element signature="e#1563#1564#0" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
             <element signature="docComment;class#Simulation#0" />
             <element signature="method#Simulation#0;class#Simulation#0" />
             <element signature="method#runSimulation#0;class#Simulation#0" />
-            <element signature="e#7427#7442#0" />
-            <element signature="e#7597#7605#0" />
           </folding>
         </state>
       </provider>
@@ -543,24 +519,10 @@
           <caret line="151" column="4" selection-start-line="151" selection-start-column="4" selection-end-line="151" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
             <element signature="class#SpaceShip#0" />
-            <element signature="e#1563#1564#0" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
             <element signature="docComment;class#Simulation#0" />
             <element signature="method#Simulation#0;class#Simulation#0" />
             <element signature="method#runSimulation#0;class#Simulation#0" />
-            <element signature="e#7427#7442#0" />
-            <element signature="e#7597#7605#0" />
           </folding>
         </state>
       </provider>
@@ -574,24 +536,10 @@
           <caret line="63" column="16" lean-forward="true" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
             <element signature="class#SpaceShip#0" />
-            <element signature="e#1563#1564#0" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
             <element signature="docComment;class#Simulation#0" />
             <element signature="method#Simulation#0;class#Simulation#0" />
             <element signature="method#runSimulation#0;class#Simulation#0" />
-            <element signature="e#7427#7442#0" />
-            <element signature="e#7597#7605#0" />
           </folding>
         </state>
       </provider>
@@ -605,24 +553,10 @@
           <caret line="65" selection-start-line="65" selection-end-line="65" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
             <element signature="class#SpaceShip#0" />
-            <element signature="e#1563#1564#0" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
             <element signature="docComment;class#Simulation#0" />
             <element signature="method#Simulation#0;class#Simulation#0" />
             <element signature="method#runSimulation#0;class#Simulation#0" />
-            <element signature="e#7427#7442#0" />
-            <element signature="e#7597#7605#0" />
           </folding>
         </state>
       </provider>
@@ -634,24 +568,10 @@
           <caret line="68" column="5" lean-forward="true" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
             <element signature="class#SpaceShip#0" />
-            <element signature="e#1563#1564#0" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
             <element signature="docComment;class#Simulation#0" />
             <element signature="method#Simulation#0;class#Simulation#0" />
             <element signature="method#runSimulation#0;class#Simulation#0" />
-            <element signature="e#7427#7442#0" />
-            <element signature="e#7597#7605#0" />
           </folding>
         </state>
       </provider>
@@ -663,24 +583,10 @@
           <caret line="73" column="36" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
             <element signature="class#SpaceShip#0" />
-            <element signature="e#1563#1564#0" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
             <element signature="docComment;class#Simulation#0" />
             <element signature="method#Simulation#0;class#Simulation#0" />
             <element signature="method#runSimulation#0;class#Simulation#0" />
-            <element signature="e#7427#7442#0" />
-            <element signature="e#7597#7605#0" />
           </folding>
         </state>
       </provider>
@@ -709,9 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
           <caret line="369" selection-start-line="369" selection-end-line="369" />
-          <folding>
-            <element signature="e#12901#12902#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -743,9 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6213">
           <caret line="371" selection-start-line="371" selection-end-line="371" />
-          <folding>
-            <element signature="e#13945#13946#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -759,7 +659,7 @@
     <entry file="file://$PROJECT_DIR$/phase-1.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -772,28 +672,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="31" column="59" lean-forward="true" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+        <state relative-caret-position="202">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#756#757#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#822#823#0" expanded="true" />
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#883#884#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
-            <element signature="e#952#953#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
             <element signature="class#SpaceShip#0" />
-            <element signature="e#1563#1564#0" expanded="true" />
-            <element signature="e#1590#1591#0" expanded="true" />
-            <element signature="e#1639#1640#0" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
             <element signature="docComment;class#Simulation#0" />
             <element signature="method#Simulation#0;class#Simulation#0" />
             <element signature="method#runSimulation#0;class#Simulation#0" />
-            <element signature="e#7427#7442#0" />
-            <element signature="e#7597#7605#0" />
           </folding>
         </state>
       </provider>
