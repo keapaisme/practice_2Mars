@@ -47,47 +47,11 @@ class Simulation{
     }
 
     /**
-     * 創建U1火箭隊列:(傳出U1發射隊列)load(傳入貨物清單)
-     * @param u1Temp
-     * @return
-     */
-    public ArrayList loadU1(Rocket u1Temp){
-        ArrayList loadList = new ArrayList();//每個火箭裝載的貨品內容
-        int x = itemArrayList.size();//待運件數
-        int itemIndex = 0;// 要裝入火箭的物品標號
-        while (itemIndex < x) {
-            for (itemIndex = 0 ; itemIndex < x ; itemIndex ++) {//裝貨
-                Item itemTmp = (Item) itemArrayList.get(itemIndex);//從運送清單itemArrayList取出要裝的貨物itemTmp
-                u1Temp.carry(itemTmp);//update the rocketCurrentWeight
-                //如果未超過可載運量⋯⋯
-                if (u1Temp.canCarry(itemTmp)) {
-                    loadList.add(itemTmp);
-                    if( itemIndex == x-1 ) {
-                        u1Temp.carry(itemTmp);//update the rocketCurrentWeight
-                        rockArray.add(loadList);
-                        weightPerRocket.add(u1Temp.rocketCurrentWeight-u1Temp.rocketNetWeight);//將每個火箭的載重加入發射序列
-                    }//己經裝運最後一個了，此時無論有否載滿均需將火箭加入發射陣列
-                } else {
-                    itemIndex = itemIndex-1;
-                    rockArray.add(loadList);
-                    weightPerRocket.add(u1Temp.rocketCurrentWeight-u1Temp.rocketNetWeight);//將每個火箭的載重加入發射序列
-                    //這裡結束上一個u1Temp 另建一個 u1Temp
-                    U1 u1Temp2 = new U1();
-                    u1Temp = u1Temp2;
-                    ArrayList loadList2 = new ArrayList();
-                    loadList = loadList2;
-                }
-            }
-        }
-        return rockArray;
-    }
-
-    /**
-     * 創建U2火箭隊列:(傳出U2發射隊列)load(傳入貨物清單)
+     * 創建火箭隊列:(傳出發射隊列)load(傳入貨物清單)
      * @param temp
      * @return
      */
-    public ArrayList loadU2(Rocket temp) {
+    public ArrayList loadRocket(Rocket temp) {
         ArrayList loadList = new ArrayList();//每個火箭裝載的貨品內容
         int x = itemArrayList.size();//待運件數
         int itemIndex = 0;// 要裝入火箭的物品標號
@@ -128,6 +92,7 @@ class Simulation{
         int no;//火箭的序號,用於螢幕輸出用，執行時取消輸出各火箭裝載狀況，所以未使用到
         int success = 0;//每次完成任務，每趟成功發射且著陸的火箭數
         int failed = 0;//每次完成任務，發射失敗或著陸失敗的火箭數
+        totalCost = 0;
 
         while(!weightPerRocket.isEmpty()){//火箭未發射完
             int wt = (int) weightPerRocket.get(0);//將序列裡的載重--＞wt

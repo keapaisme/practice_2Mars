@@ -18,14 +18,15 @@ public class Main {
         mission2.loadItems("phase-2.txt");
     //計算U1火箭執行2次任務所需預算
         System.out.println("\n計算U1火箭執行任務");
-        mission1.loadU1(new U1());
-        mission2.loadU1(new U1());
+        mission1.loadRocket(new U1());
+        mission2.loadRocket(new U1());
         long totalU1 = mission1.runSimulation(new U1())+mission2.runSimulation(new U1());
     //計算U2火箭執行2次任務所需預算
         System.out.println("\n計算U2火箭執行任務");
-        mission1.loadU2(new U2());
-        mission2.loadU2(new U2());
+        mission1.loadRocket(new U2());
+        mission2.loadRocket(new U2());
         long totalU2 = mission1.runSimulation(new U2())+mission2.runSimulation(new U2());
+
     //顯示U1，U2所需的總預算
         System.out.println("+++++++++++++++++++++++++++++++++++");
         System.out.println("U1 執行任務總預算為 $"+totalU1+" 美元。");
